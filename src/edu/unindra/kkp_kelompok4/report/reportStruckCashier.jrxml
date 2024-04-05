@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="227" pageHeight="227" columnWidth="227" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="772785a9-36b2-4594-9f8a-4d9296304bdb">
+	<property name="ireport.zoom" value="4.594972986357242"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="orderId" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+	cashier.'orderId' AS Cashier_orderId,
+	cashier.'dateOrder' AS Cashier_dateOrder,
+	cashier.'totalOrder' AS Cashier_totalOrder,
+	cashier.'idEmployee' AS Cashier_idEmployee,
+	cashier.'payment' AS Cashier_payment,
+	cashier.'totalAmount' AS Cashier_totalAmount,
+	cashier.'changePayment' AS Cashier_changePayment,
+	detailCashierOrder.'itemCode' AS detailCashierOrder_itemCode,
+	detailCashierOrder.'totalOrder' AS detailCashierOrder_totalOrder,
+	detailCashierOrder.'subTotalOrder' AS detailCashierOrder_subTotalOrder,
+	itemsList.'itemName' AS itemsList_itemName,
+	itemsList.'itemUnit' AS itemsList_itemUnit,
+	itemsList.'price' AS itemsList_itemPrice,
+	employeeTable.'employeeName' AS employeeTable_NameEmployee
+FROM
+	'cashier' cashier INNER JOIN 'detailCashierOrder' detailCashierOrder ON cashier.'orderId' = detailCashierOrder.'orderId'
+	INNER JOIN 'itemsList' itemsList ON detailCashierOrder.'itemCode' = itemsList.'itemCode' INNER JOIN 'employeeTable' employeeTable ON employeeTable.'idEmployee' = cashier.'idEmployee'
+WHERE
+	Cashier_orderId = $P{orderId}]]>
+	</queryString>
+	<field name="Cashier_orderId" class="java.lang.Object"/>
+	<field name="Cashier_dateOrder" class="java.lang.Object"/>
+	<field name="Cashier_totalOrder" class="java.lang.Object"/>
+	<field name="Cashier_idEmployee" class="java.lang.Object"/>
+	<field name="Cashier_payment" class="java.lang.Object"/>
+	<field name="Cashier_totalAmount" class="java.lang.Object"/>
+	<field name="Cashier_changePayment" class="java.lang.Object"/>
+	<field name="detailCashierOrder_itemCode" class="java.lang.Object"/>
+	<field name="detailCashierOrder_totalOrder" class="java.lang.Object"/>
+	<field name="detailCashierOrder_subTotalOrder" class="java.lang.Object"/>
+	<field name="itemsList_itemName" class="java.lang.Object"/>
+	<field name="itemsList_itemUnit" class="java.lang.Object"/>
+	<field name="itemsList_itemPrice" class="java.lang.Object"/>
+	<field name="employeeTable_NameEmployee" class="java.lang.Object"/>
+	<variable name="Cashier_dateOrder_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{Cashier_dateOrder}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="75" y="0" width="92" height="20" uuid="ba0db419-d6ca-4d27-b53f-792d67574297"/>
+				<textElement>
+					<font fontName="Century Gothic" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MINIMARKET XYZ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="59" y="0" width="16" height="20" uuid="3115210b-f528-4980-82a6-35cf5ff5fdad"/>
+				<imageExpression><![CDATA["icons8_shopping_cart_50px.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="75" y="10" width="92" height="8" uuid="0dd33b41-f0e7-4e17-af4d-a93e11f701e1"/>
+				<textElement>
+					<font size="2"/>
+				</textElement>
+				<text><![CDATA[Pasar Induk Kramat Jati Jl. Raya Bogor Kp. Tengah Kec. Kramat jati, Kota Jakarta Timur]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="178" y="3" width="49" height="7" uuid="1b6b6d99-652d-4e4a-b8cf-2e3515c1b3e3"/>
+				<textElement>
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{Cashier_orderId}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch">
+			<staticText>
+				<reportElement x="157" y="0" width="31" height="9" uuid="7b635d3d-3800-4802-a68d-7168c38e225f"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Nama Kasir :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="8" width="205" height="1" uuid="0a32c22b-c13f-429a-9012-a10d854405ed"/>
+			</line>
+			<textField>
+				<reportElement x="13" y="-2" width="37" height="8" uuid="a56c226f-6c32-4528-9808-bcda1a0ba707"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{Cashier_dateOrder}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="0" width="39" height="10" uuid="df5c624b-5c81-4e82-9bee-513d944b8d68"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{employeeTable_NameEmployee}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="12" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="0" width="55" height="7" uuid="8b9b7f62-8906-4ca9-9c73-ab8e1a75e73a"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="0" width="55" height="7" uuid="f477a6d7-eaa1-4476-be7b-fce09436e509"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="0" width="22" height="7" uuid="a362b914-258d-496b-9901-6d5db99d70ec"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Total Item]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="7" width="205" height="1" uuid="f0afe084-f592-4229-81dc-c2bd7f8e1de7"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="8" splitType="Stretch">
+			<textField>
+				<reportElement x="12" y="0" width="55" height="8" uuid="6650ad74-8bcf-474e-831d-04cc54f6ea59"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{itemsList_itemName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="157" y="0" width="60" height="8" uuid="4fd41c6f-89ee-4da4-bb2f-57585267f3a3"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{detailCashierOrder_subTotalOrder}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="0" width="41" height="8" uuid="8c098bee-e705-4795-8994-12a9a108f333"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{detailCashierOrder_totalOrder}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="49" splitType="Stretch">
+			<line>
+				<reportElement x="9" y="0" width="205" height="1" uuid="2379e5d7-9968-4cbe-9f8e-b1883a08895e"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="11" width="36" height="9" uuid="06a1ba95-d4db-459f-9425-07bc30c38ed0"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Total Pesanan]]></text>
+			</staticText>
+			<textField pattern="Rp #,##0">
+				<reportElement x="157" y="11" width="35" height="8" uuid="198e7b66-4a34-4541-b5c4-c9928ae74ee1"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cashier_totalOrder}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="30" width="36" height="9" uuid="ff14ba16-a2f8-4e2b-855a-c56f77525cb2"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Pembayaran]]></text>
+			</staticText>
+			<textField pattern="Rp #,##0">
+				<reportElement x="156" y="28" width="35" height="9" uuid="8796a3cb-7871-4029-920b-fbdee7afd176"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cashier_payment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="2" width="54" height="9" uuid="f25659ae-08a1-4d8d-9fd7-bba27f9860a8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Total Pembayaran]]></text>
+			</staticText>
+			<textField pattern="Rp #,##0">
+				<reportElement x="157" y="2" width="34" height="8" uuid="f37239c3-11dd-405a-9743-4227d291747b"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cashier_totalAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="20" width="36" height="9" uuid="f9d34186-8c09-4e9c-8977-63a5364131c8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Kembalian]]></text>
+			</staticText>
+			<textField pattern="Rp #,##0">
+				<reportElement x="157" y="20" width="34" height="8" uuid="257baef9-e637-4652-baba-bc0b463dd823"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cashier_changePayment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch"/>
+	</summary>
+</jasperReport>

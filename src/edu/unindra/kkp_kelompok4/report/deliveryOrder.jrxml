@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="522" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a782498e-1d0b-49d6-adbb-cb6fe608dba2">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="invoiceNumber" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+	itemCheckin.'noCheckIn' AS itemCheckin_noCheckIn,
+	itemCheckin.'dateCheckin' AS itemCheckin_dateCheckin,
+	itemCheckin.'totalCheckin' AS itemCheckin_totalCheckin,
+	itemCheckin.'transactionName' AS itemCheckin_transactionName,
+	itemCheckin.'idEmployee' AS itemCheckin_employeeName,
+	itemCheckin.'statusTransaction' AS itemCheckin_statusTransaction,
+	detailCheckin.'itemCode' AS detailCheckin_itemCode,
+	detailCheckin.'totalCheckin' AS detailCheckin_totalCheckin,
+	detailCheckin.'subTotalCheckin' AS detailCheckin_subTotalCheckin,
+	detailCheckin.'distributorId' AS detailCheckin_distributorId,
+	
+	itemsList.'typeCode' AS itemsList_typeCode,
+	itemsList	.'itemName' AS itemsList_itemName,
+	itemsList.'itemUnit' AS itemsList_itemUnit,
+
+	typeItemList.'nameType' AS typeItemList_nameType,
+		
+	distributor.'distributorName' AS distributor_distributorName,
+	distributor.'distributorTelp' AS distributor_distributorTelp,
+	distributor.'distributorAddress' AS distributor_adress,
+
+	employeeTable.'employeeName' AS employee_Name
+FROM
+	'itemCheckin' itemCheckin INNER JOIN 'detailCheckin' detailCheckin ON itemCheckin.'noCheckIn' = detailCheckin.'noCheckIn'
+	INNER JOIN 'distributor' distributor ON detailCheckin.'distributorId' = distributor.'distributorId' INNER JOIN 'itemsList' itemsList ON detailCheckin.'itemCode' = itemsList.'itemCode' INNER JOIN 'typeItemList' typeItemList ON itemsList.'typeCode' = typeItemList.'typeCode' INNER JOIN 'employeeTable'employeeTable ON employeeTable.'idEmployee' = itemCheckin.'idEmployee'
+WHERE
+	itemCheckin_noCheckIn = $P{invoiceNumber}]]>
+	</queryString>
+	<field name="itemCheckin_noCheckIn" class="java.lang.Object"/>
+	<field name="itemCheckin_dateCheckin" class="java.lang.Object"/>
+	<field name="itemCheckin_totalCheckin" class="java.lang.Object"/>
+	<field name="itemCheckin_transactionName" class="java.lang.Object"/>
+	<field name="itemCheckin_employeeName" class="java.lang.Object"/>
+	<field name="itemCheckin_statusTransaction" class="java.lang.Object"/>
+	<field name="detailCheckin_itemCode" class="java.lang.Object"/>
+	<field name="detailCheckin_totalCheckin" class="java.lang.Object"/>
+	<field name="detailCheckin_subTotalCheckin" class="java.lang.Object"/>
+	<field name="detailCheckin_distributorId" class="java.lang.Object"/>
+	<field name="itemsList_typeCode" class="java.lang.Object"/>
+	<field name="itemsList_itemName" class="java.lang.Object"/>
+	<field name="itemsList_itemUnit" class="java.lang.Object"/>
+	<field name="typeItemList_nameType" class="java.lang.Object"/>
+	<field name="distributor_distributorName" class="java.lang.Object"/>
+	<field name="distributor_distributorTelp" class="java.lang.Object"/>
+	<field name="distributor_adress" class="java.lang.Object"/>
+	<field name="employee_Name" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="123" y="0" width="390" height="67" uuid="2711d50c-7234-4154-9735-0ff321c59def"/>
+				<textElement>
+					<font fontName="Century Gothic" size="48" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MINIMARKET XYZ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="54" y="0" width="69" height="67" uuid="19bf2d8c-0e74-49a7-abe1-4e143ba5699c"/>
+				<imageExpression><![CDATA["icons8_shopping_cart_50px.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="123" y="47" width="454" height="20" uuid="3bbc8c71-77a9-4fba-9af7-f09e77fafd11"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Pasar Induk Kramat Jati Jl. Raya Bogor Kp. Tengah Kec. Kramat jati, Kota Jakarta Timur]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="5" width="555" height="1" uuid="f05a6e8e-6509-4b09-9d7e-ebb100fe151d"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="179" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="38" width="100" height="20" uuid="50a6be04-3175-498f-a2d7-ae1b2d165f67"/>
+				<text><![CDATA[Nomor Invoice]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="38" width="130" height="20" uuid="0784ab3a-b863-4dd0-a295-57ea1b0a3bcc"/>
+				<textFieldExpression><![CDATA[""+$F{itemCheckin_noCheckIn}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="58" width="100" height="20" uuid="85d2d267-019c-4bd9-9d1e-4771813685ab"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="58" width="130" height="20" uuid="48385792-43f3-49a5-9047-59dcc36e9180"/>
+				<textFieldExpression><![CDATA[""+$F{itemCheckin_dateCheckin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="79" width="100" height="20" uuid="812afe55-a52e-4bb5-8d53-b2a560d9a96d"/>
+				<text><![CDATA[Perihal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="79" width="130" height="20" uuid="27abb09c-f075-42b6-8688-a32fa6cb0b34"/>
+				<textFieldExpression><![CDATA[""+$F{itemCheckin_transactionName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="186" y="4" width="196" height="20" uuid="0f028d7d-f9b6-45dd-a8bb-88b1abd0537f"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SURAT JALAN PEMBELIAN BARANG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="113" width="100" height="20" uuid="d7ad67d1-53ff-431f-8a04-9a0cef472f59"/>
+				<text><![CDATA[Dengan Hormat,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="133" width="535" height="21" uuid="938134ce-c307-41a7-b56e-801fcc440de6"/>
+				<text><![CDATA[Dengan ini kami mengirimkan surat kepada yang bersangkutan untuk pembelian barang dengan Rincian sebagai berikut :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="159" width="22" height="20" uuid="cf46ea2b-32c3-4c7f-b253-641bd64eb158"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="159" width="100" height="20" uuid="ed6a33fe-0552-4bee-adb5-c50ead084056"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="159" width="100" height="20" uuid="38a2078e-5ffb-4fe7-8ea7-34a83aa5425a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Jumlah Pesanan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="159" width="71" height="20" uuid="17983b35-226b-4dff-9f8c-f55aa49cdb6b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="159" width="110" height="20" uuid="2fab335b-660d-4550-b4cd-054da588d409"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Jenis Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="159" width="110" height="20" uuid="2c895c14-3bd8-4014-9ecd-de8e63edf37b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nama Distributor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="0" width="100" height="18" uuid="9635cbeb-b2fd-45d4-b218-38a31d259565"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{itemsList_itemName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="0" width="110" height="18" uuid="6823b190-8725-4982-b472-7e2b405983ea"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{distributor_distributorName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="0" width="110" height="18" uuid="99e8f5e1-9a17-4f79-a2e4-843ee84f6751"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{typeItemList_nameType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="71" height="18" uuid="a50a3c63-9c84-4a47-b426-4f910c846dd6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{itemsList_itemUnit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="0" width="22" height="18" uuid="e2e37005-a95f-4876-867b-858533c0277d"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="100" height="18" uuid="6efd6db5-ec56-4c8e-a549-47747c214697"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{detailCheckin_totalCheckin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="86" splitType="Stretch">
+			<staticText>
+				<reportElement x="18" y="0" width="95" height="13" uuid="2c81b0c9-2be5-4e4f-899e-269ed81c356f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Owner]]></text>
+			</staticText>
+			<line>
+				<reportElement x="18" y="81" width="100" height="1" uuid="53a0752a-f839-404d-8de7-44229f84333e"/>
+			</line>
+			<line>
+				<reportElement x="216" y="83" width="100" height="1" uuid="26547653-b473-4688-87c3-159e9b078781"/>
+			</line>
+			<staticText>
+				<reportElement x="216" y="0" width="95" height="13" uuid="93c4996a-83cf-476e-b97f-864e5ec2dc36"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Petugas Gudang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="0" width="95" height="13" uuid="41314014-b72d-4275-90eb-bc6d3ae20bdc"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Distributor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="428" y="82" width="100" height="1" uuid="5e771f2a-4104-4430-955c-8b54d93f15ab"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="95" height="13" uuid="ffb45c9f-980f-4e33-a6d4-fe30668082d8"/>
+				<textElement textAlignment="Center">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Transaksi ini dibuat oleh]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="75" y="13" width="100" height="13" uuid="75ca46cf-221b-4c91-bb84-ed10136a8e86"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{employee_Name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="4" width="413" height="20" uuid="b32f645f-c233-4c51-9ffe-67369501b1a7"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Jika terdapat lebih dari 1 distributor, harap memberikan paraf disamping nama distributor]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
